@@ -49,7 +49,7 @@ export async function getPageBySlug(slug) {
 export async function getPrimaryMenu() {
   const data = await fetchAPI(`
   {
-    menus(where: {location: PRIMARY}) {
+    menus(where: {location: TOP}) {
       nodes {
         menuItems {
           edges {
