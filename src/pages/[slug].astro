@@ -5,7 +5,7 @@ import { getAllPagesWithSlugs, getPageBySlug } from '../lib/api';
 
 // Menentukan jalur dinamis
 export async function getStaticPaths() {
-  const pagesWithSlugs = await getAllPagesWithSlugs();
+  const pagesWithSlugs = await getAllPagesWithSlugs(`${process.env.API_URL}/pages`);
   
   return pagesWithSlugs.edges.map(({ node }) => ({
     params: { slug: node.slug },
