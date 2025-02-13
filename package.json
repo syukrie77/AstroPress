@@ -9,13 +9,21 @@
     "preview": "astro preview"
   },
   "devDependencies": {
-    "astro": "^0.20.7",
+    "astro": "^5.2.6",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.2",
     "prettier-plugin-astro": "github:snowpackjs/prettier-plugin-astro",
-    "tailwindcss": "^2.2.15"
+    "sass": "^1.84.0",
+    "snowpack": "^3.8.8",
+    "tailwindcss": "^2.2.19"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.2.1",
+    "@astrojs/tailwind": "^6.0.0",
     "@tailwindcss/typography": "^0.4.1",
+    "cheerio": "^1.0.0-rc.10",
     "dotenv": "^10.0.0",
-    "nvm": "^0.0.4"
+    "nvm": "^0.0.4",
+    "punycode": "^2.3.1"
   }
 }

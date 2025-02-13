@@ -1,5 +1,11 @@
 module.exports = {
-  mode: 'jit',
-  purge: ['./public/**/*.html', './src/**/*.{astro,js,jsx,svelte,ts,tsx,vue}'],
-  plugins: [require('@tailwindcss/typography')],
+  purge: ['./src/**/*.astro', './src/**/*.js', './src/**/*.jsx', './src/**/*.ts', './src/**/*.tsx'],
+  darkMode: false,
+  theme: {
+    extend: {},
+  },
+  variants: {
+    extend: {},
+  },
+  plugins: [],
 };

@@ -1,36 +1,41 @@
 ---
+// Impor komponen dan fungsi API
 import Header from '../components/Header.astro';
 import { getAllPagesWithSlugs, getPageBySlug } from '../lib/api';
 
+// Menentukan jalur dinamis
 export async function getStaticPaths() {
   const pagesWithSlugs = await getAllPagesWithSlugs();
-  return pagesWithSlugs.edges.map(({ node }) => {
-    return {
-      params: { slug: node.slug },
-    };
-  });
+  
+  return pagesWithSlugs.edges.map(({ node }) => ({
+    params: { slug: node.slug },
+  }));
 }
-const { slug } = Astro.request.params;
-const page = await getPageBySlug(slug);
----
 
+// Mendapatkan parameter slug dari URL
+const { slug } = Astro.params;
+
+// Mengambil data halaman berdasarkan slug
+let page;
+try {
+  page = await getPageBySlug(slug);
+} catch (error) {
+  console.error('Error fetching page:', error);
+}
+
+---
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>{page.title}</title>
+    <title>{page?.title || 'Page Not Found'}</title>
     <meta name="viewport" content="width=device-width" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href={Astro.resolve('../styles/global.css')} />
+    <link rel="stylesheet" type="text/css" href="/styles/global.css" />
   </head>
   <body>
     <Header />
     <div class="flex flex-col p-10">
-      <div class="mb-5 text-4xl font-bold">{page.title}</div>
-      <article class="prose lg:prose-xl">
-        {page.content}
-      </article>
+      <div class="mb-5 text-4xl font-bold">{page?.title || 'Page Not Found'}</div>
+      <article class="prose lg:prose-xl" set:html={page?.content || '<p>Content not available.</p>'}></article>
     </div>
   </body>
 </html>

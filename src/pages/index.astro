@@ -1,6 +1,8 @@
 ---
+// Import komponen Header
 import Header from '../components/Header.astro';
-let title = 'Astro WordPress demo';
+
+const title = 'Astro WordPress Demo';
 ---
 
 <html lang="en">
@@ -8,10 +10,7 @@ let title = 'Astro WordPress demo';
     <meta charset="UTF-8" />
     <title>{title}</title>
     <meta name="viewport" content="width=device-width" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href={Astro.resolve('../styles/global.css')} />
+    <link rel="stylesheet" type="text/css" href="/styles/global.css" />
   </head>
   <body>
     <Header />
@@ -19,8 +18,7 @@ let title = 'Astro WordPress demo';
       <div class="mb-5 text-4xl font-bold">Selamat Datang di AstroPress</div>
       <article class="prose lg:prose-xl">
         <p>
-          AstroPress dibangun dengan teknologi AstroJS dan CMS WordPress. 
-          Ini memberikan kemudahan bagi anda yang ingin mengembangkan website yang ciamik.
+          AstroPress dibangun dengan teknologi AstroJS dan CMS WordPress. Ini memberikan kemudahan bagi Anda yang ingin mengembangkan website yang ciamik.
         </p>
       </article>
     </div>
