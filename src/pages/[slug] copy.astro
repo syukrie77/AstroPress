@@ -1,17 +1,12 @@
 ---
-// Impor komponen
+// Impor komponen dan fungsi API
 import Header from '../components/Header.astro';
 import { getAllPagesWithSlugs, getPageBySlug } from '../lib/api';
 
 // Menentukan jalur dinamis
 export async function getStaticPaths() {
   const pagesWithSlugs = await getAllPagesWithSlugs();
-
-  if (!pagesWithSlugs?.edges) {
-    console.error("Error: edges is undefined in getAllPagesWithSlugs");
-    return [];
-  }
-
+  
   return pagesWithSlugs.edges.map(({ node }) => ({
     params: { slug: node.slug },
   }));
@@ -21,19 +16,19 @@ export async function getStaticPaths() {
 const { slug } = Astro.params;
 
 // Mengambil data halaman berdasarkan slug
-let page = null;
+let page;
 try {
   page = await getPageBySlug(slug);
 } catch (error) {
   console.error('Error fetching page:', error);
 }
----
 
+---
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <title>{page?.title || 'Page Not Found'}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" type="text/css" href="/styles/global.css" />
   </head>
   <body>
